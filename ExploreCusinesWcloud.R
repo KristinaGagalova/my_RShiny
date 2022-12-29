@@ -11,7 +11,6 @@ ui <- fluidPage(
     ),
     mainPanel(
       tabsetPanel(
-        # CODE BELOW: Add `d3wordcloudOutput` named `wc_ingredients` in a `tabPanel`
         tabPanel('Word Cloud', d3wordcloud::d3wordcloudOutput('wc_ingredients', height = '400')),
         tabPanel('Plot', plotly::plotlyOutput('plot_top_ingredients')),
         tabPanel('Table', DT::DTOutput('dt_top_ingredients'))
@@ -21,11 +20,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session){
-  # CODE BELOW: Render an interactive wordcloud of top distinctive ingredients 
-  # and the number of recipes they get used in, using 
-  # `d3wordcloud::renderD3wordcloud`, and assign it to an output named
-  # `wc_ingredients`.
-  output$wc_ingredients <- d3wordcloud::renderD3wordcloud({
+   output$wc_ingredients <- d3wordcloud::renderD3wordcloud({
      ingredients_df <- rval_top_ingredients()
      d3wordcloud(ingredients_df$ingredient, ingredients_df$nb_recipes, tooltip = TRUE)
   })

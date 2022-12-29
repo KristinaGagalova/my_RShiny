@@ -10,8 +10,6 @@ ui <- bootstrapPage(
     dateRangeInput(
       'date_range', 'Select Date', "2010-01-01", "2019-12-01"
     ),
-    # CODE BELOW: Add an action button named show_about
-    
   ),
   tags$style(type = "text/css", "
     html, body {width:100%;height:100%}     
@@ -20,11 +18,6 @@ ui <- bootstrapPage(
 )
 
 server <- function(input, output, session) {
-  # CODE BELOW: Use observeEvent to display a modal dialog
-  # with the help text stored in text_about.
-
-  
-  
   output$map <- leaflet::renderLeaflet({
     mass_shootings %>% 
       filter(
